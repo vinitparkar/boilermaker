@@ -12,9 +12,13 @@ const getPlaces = () => {
 
 export const fetchSearchPlaces = (searchPlaces) => {
   return function(dispatch) {
-      axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyApG379H7jFGOBP_1a0sqmZUoGPu1klK8Q`)
-      .then(res => console.log(res.data))
-      .catch(console.error)
+      let service = new google.maps.places.PlacesService(document.createElement('div'));
+      service.nearbySearch({
+        location: searchPlaces.locationSuggestion.location,
+        radius: 500,
+        type: ['store']}, function(result, status) {
+          console.log(result);
+        });
   }
 }
 

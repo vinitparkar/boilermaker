@@ -24,27 +24,31 @@ class Home extends Component {
     this.handleGeoSuggestChange = this.handleGeoSuggestChange.bind(this);
     this.handleGeoSuggestSelect = this.handleGeoSuggestSelect.bind(this);
     this.handleRadiusChange = this.handleRadiusChange.bind(this);
+    this.handleRestaurantChange = this.handleRestaurantChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleGeoSuggestChange (value) {
     this.setState({location: value});
-    //console.log(this.state.location);
   }
 
   handleGeoSuggestSelect(value) {
     this.setState({locationSuggestion: value})
-    console.log(this.state.location, this.state.locationSuggestion);
   }
 
   handleRadiusChange(event) {
     this.setState({radius: event.target.value});
   }
 
+  handleRestaurantChange(){
+    let newValue = !this.state.restaurants;
+    this.setState({restaurants: newValue});
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     this.props.findPlaces(this.state);
-    this.setState({ location: '', restaurants: false, radius: '' })
+    this.setState({ location: '', restaurants: false, radius: '' });
   }
 
   render() {
@@ -88,6 +92,14 @@ class Home extends Component {
                       <Checkbox
                         label="Restaurants"
                         style={styles.checkbox}
+                        value={this.state.restaurants}
+                        onCheck={this.handleRestaurantChange}
+                      />
+                      <Checkbox
+                        label="Bars"
+                        style={styles.checkbox}
+                        value={this.state.bar}
+                        onCheck={this.handleBarChange}
                       />
                     </div><br />
                   <div className="form-group">
@@ -109,7 +121,7 @@ function mapStateToProps(storeState) {
 function mapDispactToProps(dispatch) {
     return {
         findPlaces: function(searchPlaces) {
-          dispatch(fetchSearchPlaces());
+          dispatch(fetchSearchPlaces(searchPlaces));
         }
     }
 }
