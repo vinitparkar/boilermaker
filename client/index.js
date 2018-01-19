@@ -1,15 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
-import store from './store'
-import Routes from './routes'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import store from './store';
+import Root from './components/root';
+
 
 // establishes socket connection
-import './socket'
+import './socket';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Routes />
+    <Root />
   </Provider>,
   document.getElementById('app')
-)
+);
