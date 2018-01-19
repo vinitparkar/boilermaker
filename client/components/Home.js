@@ -19,12 +19,25 @@ class Home extends Component {
       location: '',
       locationSuggestion: '',
       radius: '',
-      restaurants: false
+      restaurant: false,
+      bar: false,
+      night_club: false,
+      park: false,
+      shopping_mall: false,
+      museum: false,
+      movie_theater: false
     }
     this.handleGeoSuggestChange = this.handleGeoSuggestChange.bind(this);
     this.handleGeoSuggestSelect = this.handleGeoSuggestSelect.bind(this);
     this.handleRadiusChange = this.handleRadiusChange.bind(this);
     this.handleRestaurantChange = this.handleRestaurantChange.bind(this);
+    this.handleBarChange = this.handleBarChange.bind(this);
+    this.handleNightClubChange = this.handleNightClubChange.bind(this);
+    this.handleParksChange = this.handleParksChange.bind(this);
+    this.handleShoppingMallsChange = this.handleShoppingMallsChange.bind(this);
+    this.handleMuseumsChange = this.handleMuseumsChange.bind(this);
+    this.handleMovieTheatreChange = this.handleMovieTheatreChange.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -42,13 +55,43 @@ class Home extends Component {
 
   handleRestaurantChange(){
     let newValue = !this.state.restaurants;
-    this.setState({restaurants: newValue});
+    this.setState({restaurant: newValue});
+  }
+
+  handleBarChange() {
+    let newValue = !this.state.bars;
+    this.setState({bar: newValue});
+  }
+
+  handleNightClubChange() {
+    let newValue = !this.state.nightClubs;
+    this.setState({night_club: newValue});
+  }
+
+  handleParksChange() {
+    let newValue = !this.state.parks;
+    this.setState({park: newValue});
+  }
+
+  handleShoppingMallsChange(){
+    let newValue = !this.state.shopping_mall;
+    this.setState({shopping_mall: newValue});
+  }
+
+  handleMuseumsChange() {
+    let newValue = !this.state.museums;
+    this.setState({museum: newValue});
+  }
+
+  handleMovieTheatreChange() {
+    let newValue = !this.state.movieTheatres;
+    this.setState({movie_theater: newValue});
   }
 
   handleSubmit(event) {
     event.preventDefault();
     this.props.findPlaces(this.state);
-    this.setState({ location: '', restaurants: false, radius: '' });
+    this.setState({ location: '', restaurant: false, radius: '', bar: false, night_club: false, park: false, shopping_mall: false, museum: false, movie_theater: false });
   }
 
   render() {
@@ -80,10 +123,10 @@ class Home extends Component {
 
                     <TextValidator
                         name="radius"
-                        hintText="Enter Search Radius"
+                        hintText="Enter Search Radius in meters"
                         type="number"
-                        validators={['required', 'minNumber:1', 'maxNumber:10']}
-                        errorMessages={['this field is required', 'Radius cannot be less than 1', 'Radius cannot be greater than 10']}
+                        validators={['required', 'minNumber:1', 'maxNumber:5000']}
+                        errorMessages={['this field is required', 'Radius cannot be less than 1', 'Radius cannot be greater than 5000']}
                         value={this.state.radius}
                         onChange={this.handleRadiusChange}
                     /><br />
@@ -92,15 +135,45 @@ class Home extends Component {
                       <Checkbox
                         label="Restaurants"
                         style={styles.checkbox}
-                        value={this.state.restaurants}
+                        value={this.state.restaurant}
                         onCheck={this.handleRestaurantChange}
-                      />
+                      /><br />
                       <Checkbox
                         label="Bars"
                         style={styles.checkbox}
                         value={this.state.bar}
                         onCheck={this.handleBarChange}
                       />
+                      <Checkbox
+                        label="Night Clubs"
+                        style={styles.checkbox}
+                        value={this.state.night_club}
+                        onCheck={this.handleNightClubChange}
+                      /><br />
+                      <Checkbox
+                        label="Parks"
+                        style={styles.checkbox}
+                        value={this.state.park}
+                        onCheck={this.handleParksChange}
+                      /><br />
+                      <Checkbox
+                        label="Shopping Malls"
+                        style={styles.checkbox}
+                        value={this.state.shopping_mall}
+                        onCheck={this.handleShoppingMallsChange}
+                      /><br />
+                      <Checkbox
+                        label="Museums"
+                        style={styles.checkbox}
+                        value={this.state.museum}
+                        onCheck={this.handleMuseumsChange}
+                      /><br />
+                      <Checkbox
+                        label="Movie Theatres"
+                        style={styles.checkbox}
+                        value={this.state.movie_theater}
+                        onCheck={this.handleMovieTheatreChange}
+                      /><br />
                     </div><br />
                   <div className="form-group">
                     <RaisedButton label="Submit" type="submit" style={{margin: 12}} />
@@ -126,8 +199,6 @@ function mapDispactToProps(dispatch) {
     }
 }
 
-
 const HomeContainer = connect(mapStateToProps, mapDispactToProps)(Home);
-
 
 export default HomeContainer;

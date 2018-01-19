@@ -4,33 +4,39 @@ import axios from 'axios';
 const SEARCH_PLACES = "SEARCH_PLACES";
 
 //Action Creator
-const getPlaces = () => {
+const getPlaces = (searchResults) => {
   return {
-    type: SEARCH_PLACES
+    type: SEARCH_PLACES,
+    searchResults
   };
 };
 
 export const fetchSearchPlaces = (searchPlaces) => {
   return function(dispatch) {
+
+      let type = [], keys = Object.keys(searchPlaces);
+      for (let i in keys) {
+        if (searchPlaces[keys[i]] === true) {
+          type.push(keys[i]);
+        }
+      }
+
       let service = new google.maps.places.PlacesService(document.createElement('div'));
       service.nearbySearch({
         location: searchPlaces.locationSuggestion.location,
-        radius: 500,
-        type: ['store']}, function(result, status) {
-          console.log(result);
+        radius: +searchPlaces.radius,
+        type: type}, function(result, status) {
+          dispatch(getPlaces(result));
         });
   }
 }
 
-
-// export default function (state = initialState, action) {
-//   switch (action.type) {
-//     case GOT_ALL_PRODUCT_REVIEWS:
-//       return action.reviews
-//     case WRITE_REVIEW:
-//       return state.concat([action.review])
-//     default:
-//       return state
-//   }
-// }
+export default function (state = [], action) {
+  switch (action.type) {
+    case SEARCH_PLACES:
+      return action.searchResults
+    default:
+      return state
+  }
+}
 
