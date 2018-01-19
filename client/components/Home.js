@@ -3,6 +3,7 @@ import Geosuggest from 'react-geosuggest';
 //import { connect } from 'react-redux';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator } from 'react-material-ui-form-validator';
+import TextField from 'material-ui/TextField';
 
 /**
  * COMPONENT
@@ -16,11 +17,17 @@ export default class Home extends Component {
       location: ''
     }
     this.handleGeoSuggestChange = this.handleGeoSuggestChange.bind(this);
+    this.handleGeoSuggestSelect = this.handleGeoSuggestSelect.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleGeoSuggestChange (value) {
     this.setState({location: value});
+    console.log(this.state.location);
+  }
+
+  handleGeoSuggestSelect(value) {
+    this.setState({location: value})
     console.log(value);
   }
 
@@ -44,7 +51,8 @@ export default class Home extends Component {
                     name="location"
                     value={this.state.location}
                     onChange={this.handleGeoSuggestChange}
-                    />
+                    onSuggestSelect={this.handleGeoSuggestSelect}
+                    /><br /><br />
 
                     {/* <TextValidator
                         hintText="Enter Title"
@@ -54,7 +62,7 @@ export default class Home extends Component {
                         errorMessages={['this field is required']}
                         value={this.state.title}
                         onChange={this.handleTitle}
-                    /><br />
+                    /><br /> */}
 
                     <TextValidator
                         name="rating"
@@ -66,7 +74,7 @@ export default class Home extends Component {
                         onChange={this.handleRating}
                     /><br />
 
-                    <TextValidator
+                    {/* <TextValidator
                         name="review"
                         multiLine={true}
                         hintText="Enter Review Text"
@@ -79,7 +87,7 @@ export default class Home extends Component {
                     /> */}
                   </div>
                   <div className="form-group">
-                      <button value="Submit Review" type="submit" />
+                      <button value="Submit" type="submit">submit</button>
                   </div>
                 </ValidatorForm>
             </div>
