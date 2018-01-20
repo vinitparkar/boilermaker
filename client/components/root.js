@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './home';
+import SinglePlace from './singlePlace';
 
 export default function Main () {
 
@@ -10,6 +11,7 @@ export default function Main () {
             <div className="col-xs-10">
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route path="/:placeId" component={SinglePlace} />
               </Switch>
             </div>
           </div>
