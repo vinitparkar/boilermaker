@@ -4,8 +4,9 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import searchResults from './search';
+import singlePlace from './singlePlace';
 
-const reducer = combineReducers({user, searchResults});
+const reducer = combineReducers({user, searchResults, singlePlace});
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})

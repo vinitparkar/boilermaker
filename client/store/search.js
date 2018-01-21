@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //Action Types
-const SEARCH_PLACES = "SEARCH_PLACES";
+const SEARCH_PLACES = 'SEARCH_PLACES';
 
 //Action Creator
 const getPlaces = (searchResults) => {
@@ -31,10 +31,16 @@ export const fetchSearchPlaces = (searchPlaces) => {
   }
 }
 
-export default function (state = [], action) {
+const initialState = {
+  searchPlaces: [],
+  showPlaces: false
+}
+
+export default function (state = initialState, action) {
   switch (action.type) {
     case SEARCH_PLACES:
-      return action.searchResults
+      return {searchPlaces: action.searchResults,
+        showPlaces: true }
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Geosuggest from 'react-geosuggest';
-import {Link} from 'react-router';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator } from 'react-material-ui-form-validator';
@@ -31,6 +31,7 @@ class Home extends Component {
       museum: false,
       movie_theater: false
     }
+
     this.handleGeoSuggestChange = this.handleGeoSuggestChange.bind(this);
     this.handleGeoSuggestSelect = this.handleGeoSuggestSelect.bind(this);
     this.handleRadiusChange = this.handleRadiusChange.bind(this);
@@ -41,7 +42,6 @@ class Home extends Component {
     this.handleShoppingMallsChange = this.handleShoppingMallsChange.bind(this);
     this.handleMuseumsChange = this.handleMuseumsChange.bind(this);
     this.handleMovieTheatreChange = this.handleMovieTheatreChange.bind(this);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -212,36 +212,42 @@ class Home extends Component {
                       </ValidatorForm>
                   </div>
               </div> :
-                  //<PlaceList searchResults = {this.props.searchPlaces} />
-                  <div style={styles.root}>
-        <GridList
-                cols={2}
-                cellHeight={200}
-                padding={1}
-                style={styles.gridList}
-              >
-          {places && places.map((place, index) => (
-            <GridTile
-              key={place.id}
-              title={place.name}
-              actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-              actionPosition="left"
-              titlePosition="top"
-              titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-              cols={(index + 1)%3 ? 1 : 2}
-              rows={(index + 1)%3 ? 1 : 2}
-            >
-            <Link to={`/${place.id}`}>
-              { place.photos ?
-                <img src={place.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000})} /> :
-                <img src={'no_image.png'} />
-              }
-              </Link>
-              {/* <button onClick={} name='Add to Trip'></button> */}
-            </GridTile>
-            ))}
-        </GridList>
-    </div>
+              <div style={styles.root}>
+                {/* <GridList
+                  //cols={2}
+                  cellHeight={200}
+                  padding={1}
+                  style={styles.gridList}
+                > */}
+
+                  {places && places.map((place, index) => (
+
+                    <Link to={`/${place.place_id}`} key={place.id}>
+
+                        <li key={place.id}>
+                          {/* <GridTile
+                            key={place.id}
+                            title={place.name}
+                            actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                            actionPosition="left"
+                            titlePosition="top"
+                            titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+                            cols={(index + 1)%3 ? 1 : 2}
+                            rows={(index + 1)%3 ? 1 : 2}
+                          > */}
+
+                            { place.photos ?
+                              <img src={place.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000})} /> :
+                              <img src={'no_image.png'} />
+                            }
+                          {/* </GridTile> */}
+
+                        </li>
+                    </Link>
+                  ))};
+
+                {/* </GridList> */}
+              </div>
             }
         </div>
     );
