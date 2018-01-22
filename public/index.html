@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width initial-scale=1.0'>
+
     <title>Trip Planner</title>
+    <link rel="icon" type="image/png" height ='50' href="logo.png" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     <link rel="stylesheet" href="/style.css" />
 
     <script defer src="/bundle.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs8mrEKjT9eXh13zWxsD9dcgOvXZdW23k&libraries=places"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs8mrEKjT9eXh13zWxsD9dcgOvXZdW23k&callback=initMap&libraries=places">
+    </script>
 
   </head>
 

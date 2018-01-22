@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {fetchSinglePlace} from '../store/singlePlace';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
-import {searchResults} from '../store'
 
 class SinglePlace extends Component {
 
@@ -38,8 +37,7 @@ class SinglePlace extends Component {
       // }
 
       componentDidMount() {
-          // this.props.loadOneProduct(this.props.match.params.placeId);
-          console.log(searchResults);
+          this.props.loadOneProduct(this.props.match.params.placeId);
       }
 
       render() {
@@ -48,18 +46,20 @@ class SinglePlace extends Component {
               margin: 12,
           }
 
+          console.log(place);
+
           return (
                 <div>
-                  {/* <Card>
+                  <Card>
                       <img className='singlePlace' src={place.imageUrl} />
-                      <div style={{ margin: 40 }}>
-                          <CardTitle title={product.title} subtitle={"In Stock: " + product.quantity}/>
-                          <CardText>{product.description}</CardText>
+                        <div style={{ margin: 40 }}>
+                          {/* <CardTitle title={product.title} subtitle={"In Stock: " + product.quantity}/>
+                          <CardText>{place.description}</CardText> */}
 
-                          <RaisedButton onClick={() => addProductToCart(this.props.currentUser.id, product.id, product.price)} label="Add to Cart" />
+                          {/* <RaisedButton onClick={() => addProductToCart(this.props.currentUser.id, product.id, product.price)} label="Add to Cart" /> */}
 
                       </div>
-                  </Card> */}
+                  </Card>
                 </div>
 
           )
