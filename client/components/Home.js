@@ -4,12 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator } from 'react-material-ui-form-validator';
-import Checkbox from 'material-ui/Checkbox';
 import RaisedButton from 'material-ui/RaisedButton';
 import {fetchSearchPlaces} from '../store/search';
-import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 /**
  * COMPONENT
@@ -58,22 +54,22 @@ class Home extends Component {
   }
 
   handleRestaurantChange(){
-    let newValue = !this.state.restaurants;
+    let newValue = !this.state.restaurant;
     this.setState({restaurant: newValue});
   }
 
   handleBarChange() {
-    let newValue = !this.state.bars;
+    let newValue = !this.state.bar;
     this.setState({bar: newValue});
   }
 
   handleNightClubChange() {
-    let newValue = !this.state.nightClubs;
+    let newValue = !this.state.night_club;
     this.setState({night_club: newValue});
   }
 
   handleParksChange() {
-    let newValue = !this.state.parks;
+    let newValue = !this.state.park;
     this.setState({park: newValue});
   }
 
@@ -83,12 +79,12 @@ class Home extends Component {
   }
 
   handleMuseumsChange() {
-    let newValue = !this.state.museums;
+    let newValue = !this.state.museum;
     this.setState({museum: newValue});
   }
 
   handleMovieTheatreChange() {
-    let newValue = !this.state.movieTheatres;
+    let newValue = !this.state.movie_theater;
     this.setState({movie_theater: newValue});
   }
 
@@ -120,17 +116,15 @@ class Home extends Component {
     };
 
     const places = this.props.searchPlaces;
-
         return (
           <div>
             { !this.props.showPlaces ?
 
               <div className="create-trip">
                 <h1>Trip Planner</h1>
-
-                  <div className="search-parameters">
+                  {/* <div id= "map"></div> */}
+                  <div className="search-parameters" id="selectionParameters">
                     <ValidatorForm className="form-horizontal" onSubmit={this.handleSubmit}>
-                      <label htmlFor="geoLocation">Create Trip</label>
                       <div className="form-group">
 
                         <Geosuggest
@@ -152,101 +146,83 @@ class Home extends Component {
                         /><br />
                       </div>
 
-                      <div style={styles.block} className="search-selection-paramters">
+                      <div className="search-selection-paramters">
 
-                          <Checkbox
-                            label="Restaurants"
-                            style={styles.checkbox}
-                            value={this.state.restaurant}
-                            onCheck={this.handleRestaurantChange}
-                          /><br />
+                          <input
+                          type = "checkbox"
+                          name = "restaurants"
+                          value = {this.state.restaurant}
+                          onClick = {this.handleRestaurantChange}
+                          /> <span> Restaurants</span><br />
 
-                          <Checkbox
-                            label="Bars"
-                            style={styles.checkbox}
-                            value={this.state.bar}
-                            onCheck={this.handleBarChange}
-                          />
+                          <input
+                          type = "checkbox"
+                          name = "bars"
+                          value = {this.state.bar}
+                          onClick = {this.handleBarChange}
+                          /> <span> Bars </span><br />
 
-                          <Checkbox
-                            label="Night Clubs"
-                            style={styles.checkbox}
-                            value={this.state.night_club}
-                            onCheck={this.handleNightClubChange}
-                          /><br />
+                          <input
+                          type = "checkbox"
+                          name = "Night Clubs"
+                          value = {this.state.night_club}
+                          onClick = {this.handleNightClubChange}
+                          onChange = {this.handleNightClubChange}
+                          /> <span> Night Clubs </span><br />
 
-                          <Checkbox
-                            label="Parks"
-                            style={styles.checkbox}
-                            value={this.state.park}
-                            onCheck={this.handleParksChange}
-                          /><br />
+                          <input
+                          type = "checkbox"
+                          name = "Parks"
+                          value = {this.state.park}
+                          onClick = {this.handleParksChange}
+                          onChange = {this.handleParksChange}
+                          /> <span> Parks </span><br />
 
-                          <Checkbox
-                            label="Shopping Malls"
-                            style={styles.checkbox}
-                            value={this.state.shopping_mall}
-                            onCheck={this.handleShoppingMallsChange}
-                          /><br />
+                          <input
+                          type = "checkbox"
+                          name = "Shopping Malls"
+                          value = {this.state.shopping_mall}
+                          onClick = {this.handleShoppingMallsChange}
+                          onChange = {this.handleShoppingMallsChange}
+                          /> <span> Shopping Malls </span><br />
 
-                          <Checkbox
-                            label="Museums"
-                            style={styles.checkbox}
-                            value={this.state.museum}
-                            onCheck={this.handleMuseumsChange}
-                          /><br />
+                          <input
+                          type = "checkbox"
+                          name = "Museums"
+                          value = {this.state.museum}
+                          onClick = {this.handleMuseumsChange}
+                          onChange = {this.handleMuseumsChange}
+                          /> <span> Museums </span><br />
 
-                          <Checkbox
-                            label="Movie Theatres"
-                            style={styles.checkbox}
-                            value={this.state.movie_theater}
-                            onCheck={this.handleMovieTheatreChange}
-                          /><br />
+                          <input
+                          type = "checkbox"
+                          name = "Movie Theatres"
+                          value = {this.state.movie_theater}
+                          onClick = {this.handleMovieTheatreChange}
+                          onChange = {this.handleMovieTheatreChange}
+                          /> <span> Movie Theatres </span><br />
 
                       </div><br />
 
-                      <div className="form-group">
-                        <RaisedButton label="Submit" type="submit" style={{margin: 12}} />
-                      </div>
+                      <RaisedButton label="Submit" type="submit" style={{margin: 30}} />
 
                       </ValidatorForm>
                   </div>
               </div> :
-              <div style={styles.root}>
-                {/* <GridList
-                  //cols={2}
-                  cellHeight={200}
-                  padding={1}
-                  style={styles.gridList}
-                > */}
-
-                  {places && places.map((place, index) => (
-
+              <div >
+                  <ul style={{listStyle:"none"}}>
+                  {places && places.map((place) => (
                     <Link to={`/${place.place_id}`} key={place.id}>
-
                         <li key={place.id}>
-                          {/* <GridTile
-                            key={place.id}
-                            title={place.name}
-                            actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                            actionPosition="left"
-                            titlePosition="top"
-                            titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
-                            cols={(index + 1)%3 ? 1 : 2}
-                            rows={(index + 1)%3 ? 1 : 2}
-                          > */}
-
+                            {place.name}<br />
                             { place.photos ?
-                              <img src={place.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000})} /> :
-                              <img src={'no_image.png'} />
+                              <img src={place.photos[0].getUrl({maxWidth: 1000, maxHeight: 1000})} width='400' height='400'/> :
+                              <img src={'no_image.png'} width='400' height='400'/>
                             }
-                          {/* </GridTile> */}
-
-                        </li>
+                        </li><br />
                     </Link>
                   ))};
-
-                {/* </GridList> */}
+                  </ul>
               </div>
             }
         </div>
