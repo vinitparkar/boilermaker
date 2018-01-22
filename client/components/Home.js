@@ -122,7 +122,7 @@ class Home extends Component {
 
               <div className="create-trip">
                 <h1>Trip Planner</h1>
-                  {/* <div id= "map"></div> */}
+                  <div id= "map"></div>
                   <div className="search-parameters" id="selectionParameters">
                     <ValidatorForm className="form-horizontal" onSubmit={this.handleSubmit}>
                       <div className="form-group">

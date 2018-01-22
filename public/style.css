@@ -104,13 +104,13 @@ form div {
   left:0;
   right:0;
   margin-top:40px;
-} */
-/* #selectionParameters {
-  position: absolute; top: 300px; left: 50px; z-index: 99;
-} */
+}
 
-/* Optional: Makes the sample page fill the window. */
-/* html, body {
+#selectionParameters {
+  position: absolute; top: 300px; left: 50px; z-index: 99;
+}
+
+ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
