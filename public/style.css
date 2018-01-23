@@ -95,7 +95,7 @@ form div {
   font-weight: bold;
 }
 
-/* #map {
+#map {
   display: block;
   position:absolute;
   height:auto;
@@ -114,7 +114,7 @@ form div {
   height: 100%;
   margin: 0;
   padding: 0;
-} */
+}
 
 div.gallery {
   margin: 5px;
