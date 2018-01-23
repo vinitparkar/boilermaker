@@ -6,7 +6,7 @@ import { ValidatorForm } from 'react-form-validator-core';
 import { TextValidator } from 'react-material-ui-form-validator';
 import RaisedButton from 'material-ui/RaisedButton';
 import {fetchSearchPlaces} from '../store/search';
-
+import Map from './map';
 /**
  * COMPONENT
  */
@@ -15,6 +15,7 @@ class Home extends Component {
 
   constructor(props){
     super(props);
+    this.map = null;
     this.state = {
       location: '',
       locationSuggestion: '',
@@ -116,13 +117,14 @@ class Home extends Component {
     };
 
     const places = this.props.searchPlaces;
+
         return (
           <div>
             { !this.props.showPlaces ?
 
               <div className="create-trip">
                 <h1>Trip Planner</h1>
-                  <div id= "map"></div>
+                  <div id="map" />
                   <div className="search-parameters" id="selectionParameters">
                     <ValidatorForm className="form-horizontal" onSubmit={this.handleSubmit}>
                       <div className="form-group">
